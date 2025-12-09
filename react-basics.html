@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src = "react-basics.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        const button = <button>Click Me!</button>;
+        const paragraph = <p>This is a simple React paragraph. </p>;
+       const productCost = 10 + (2*8);
+        const shippingCost = 5;
+        const totalCost = productCost + shippingCost;
+       
+        //To put multiple elements together, we need to wrap them in a single parent element div
+        const div =(
+            <div>
+               <button>Click Me!</button>
+                <p>This is a simple React paragraph.</p>
+                <p>Can write js in jsx like 2 plus 2 is {2+2} </p>
+            </div>
+        );
+        const section =(
+            <section>
+              <button>Good Job!</button>
+              <p>My name is Ov</p>
+              <p>Cotton socks</p>
+              <p>Price: R{10}</p>
+              <button>Add to cart</button>
+              <p>Product cost is R {productCost}</p>
+              <p>Shipping cost is R {shippingCost}</p>
+              <p>Total cost is R {totalCost}</p>
+              <p>Today is {dayjs().format('DD-MM-YYYY')}</p>
+              <p>Today is {dayjs().format('MMMM D')}</p>
+              <p>Current time is {dayjs().format('HH:mm:ss')}</p>
+
+              </section>
+
+        );
+      const container = document.querySelector('.js-container');
+     // ReactDOM.createRoot(container).render(section);
+      const root = ReactDOM.createRoot(container)
+      //root.render(section);
+      setInterval(() => {
+        root.render(
+          <h1>
+            Current time: {dayjs().format('HH:mm:ss')}
+          </h1>
+        );
+      }, 1000);
+
+
+
+    </script>
+  </body>
+</html>
