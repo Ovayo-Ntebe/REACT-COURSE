@@ -14,19 +14,64 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
        
+       //create components - need to use capital letter to name components
+       function ChatInput() {
+          return(
+            <>
+              <input placeholder="Send message to Chatbot" size="30" />
+              <button>Send</button>
+            </>
+          );
+       }
+
+       function ChatMessage({message, sender}) {
+         
+        // const {message, sender} = props; // same as const message = props.message;   const sender = props.sender; and but using destructuring
+        // instead of const {message, sender} = props; can re place the props at the function parameter like function ChatMessage({message, sender}){
+              
+       /* Instead of writing if statment outside and duplicating code you can use if inside the jsx
+        if(sender === 'robot'){
+            return(
+            <div>
+              <img src="robot.png" width="50" />
+              {message}
+              </div>
+
+            );
+         } 
+            need to use a Guard operator && ..... const result = val1 && val2;
+            if val1 is true the result will be value2*/
+          return(
+            <div>
+              {sender==='robot' && <img src="robot.png" width="50" />}
+              {message}
+              {sender==='user' &&  <img src="user.png"  width="50" />}   
+            </div>
+
+          );
+
+       }
        
         //To put multiple elements together, we need to wrap them in a single parent element div
-        const div =(
-            <div>
-               <button>Click Me!</button>
-                <p>This is a simple React paragraph.</p>
-                <p>Can write js in jsx like 2 plus 2 is {2+2} </p>
-            </div>
-        );
-        
+        //<!--can place a component inside the var that will be displayed by render-->
+    
+
+        function App()
+        {
+            return (
+               <>
+                <ChatInput />
+                <ChatMessage message="hello Chatbot" sender="user" />
+                <ChatMessage message="Hello! How can I help you?" sender="robot" />
+                <ChatMessage message="Can you get todays date" sender="user" />
+                <ChatMessage message="Today is 9 Dec" sender="robot" />
+            </>
+
+            );
+        }    
       
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(div);
+      ReactDOM.createRoot(container).render(<App />);
       
 
 
