@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src = "react-basics.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+       
+       //create components - need to use capital letter to name components
+       function ChatInput() {
+          return(
+            <>
+              <input placeholder="Send message to Chatbot" size="30" />
+              <button>Send</button>
+            </>
+          );
+       }
+
+       function ChatMessage({message, sender}) {
+
+          return(
+            <div>
+              {sender==='robot' && <img src="robot.png" width="50" />}
+              {message}
+              {sender==='user' &&  <img src="user.png"  width="50" />}   
+            </div>
+
+          );
+
+       }
+       
+        //To put multiple elements together, we need to wrap them in a single parent element div
+        //<!--can place a component inside the var that will be displayed by render-->
+    
+
+        function App()
+        {
+          //make an array of messages. They will be objects with message and sender properties
+          const chatMessages = [
+          {message: "hello Chatbot", sender: "user", id : 'id1'},
+          {message: "Hello! How can I help you?", sender: "robot", id : 'id2'}, 
+          {message: "Can you get todays date", sender: "user", id : 'id3'},
+          {message: "Today is 9 Dec", sender: "robot", id : 'id4'}
+          ]
+
+          //
+          /*const chatMessagecomponets = chatMessages.map((chatMessage) => {
+            return (
+              <ChatMessage message = {chatMessage.message} sender = {chatMessage.sender} />
+
+          )
+          }) */
+          
+            return (
+               <>
+               <ChatInput />
+                {
+                  chatMessages.map((chatMessage) => {
+                    return (
+                      <ChatMessage message = {chatMessage.message} sender = {chatMessage.sender}  key = {chatMessage.id}/>
+                          )
+                  })
+
+                }
+            </>
+
+            );
+        }    
+      
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+      
+
+
+
+    </script>
+  </body>
+</html>
