@@ -37,31 +37,34 @@
 
        }
        
-        //To put multiple elements together, we need to wrap them in a single parent element div
-        //<!--can place a component inside the var that will be displayed by render-->
-    
+       //Create a ChatMessages component for the chatMessages array and the map function and only put the 
+       //ChatMessages component in the App component
+       function ChatMessages()
+       {
 
-        function App()
-        {
-          //make an array of messages. They will be objects with message and sender properties
+        /*make an array of messages. They will be objects with message and sender properties */
           const chatMessages = [
           {message: "hello Chatbot", sender: "user", id : 'id1'},
           {message: "Hello! How can I help you?", sender: "robot", id : 'id2'}, 
           {message: "Can you get todays date", sender: "user", id : 'id3'},
           {message: "Today is 9 Dec", sender: "robot", id : 'id4'}
-          ]
+          ];
 
-          //
-          /*const chatMessagecomponets = chatMessages.map((chatMessage) => {
-            return (
-              <ChatMessage message = {chatMessage.message} sender = {chatMessage.sender} />
+          /*function for event handler to test events */
+          function sendMessage()
+          {
+            //add a new message objects to the chatMessages array
+            chatMessages.push(
+              {message: "This is a test message", sender: "user", id : crypto.randomUUID()}
+            )
+            console.log(chatMessages);
+          } 
 
-          )
-          }) */
-          
-            return (
+        {/*Now this component will return the mapped chat messages */}
+           return (
                <>
-               <ChatInput />
+               {/*add temp btn to test Events , onclick is the event the showMessage is the eventHandler*/}
+               <button onClick = {sendMessage}> Test Msg</button>
                 {
                   chatMessages.map((chatMessage) => {
                     return (
@@ -70,8 +73,23 @@
                   })
 
                 }
-            </>
+              </>
 
+            );
+
+
+       }
+
+
+    
+
+        function App()
+        { 
+            return (
+               <>
+               <ChatInput />
+                <ChatMessages />
+            </>
             );
         }    
       
