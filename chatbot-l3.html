@@ -43,21 +43,37 @@
        {
 
         /*make an array of messages. They will be objects with message and sender properties */
-          const chatMessages = [
+        //Note this array on its own when i add new messages thru the push method .. it gets updated but the html
+        //is not updated because react does not know about the change .. need to use state to make react aware of changes 
+        /*  const chatMessages = [
           {message: "hello Chatbot", sender: "user", id : 'id1'},
           {message: "Hello! How can I help you?", sender: "robot", id : 'id2'}, 
           {message: "Can you get todays date", sender: "user", id : 'id3'},
           {message: "Today is 9 Dec", sender: "robot", id : 'id4'}
-          ];
+          ]; */
+          //using state to make react aware of changes to the chatMessages array and update the html when changes occur
+         const array = React.useState(
+          [
+          {message: "hello Chatbot", sender: "user", id : 'id1'},
+          {message: "Hello! How can I help you?", sender: "robot", id : 'id2'}, 
+          {message: "Can you get todays date", sender: "user", id : 'id3'},
+          {message: "Today is 9 Dec", sender: "robot", id : 'id4'}
+          ]
+         )
+
+         //State array has 2 elements the first is the state variable the second is a function to update the state variable
+         const chatMessages = array[0]; //current value of the state variable
+          const setChatMessages = array[1]; //function to update the state variable --called an Updater function
 
           /*function for event handler to test events */
           function sendMessage()
           {
             //add a new message objects to the chatMessages array
-            chatMessages.push(
-              {message: "This is a test message", sender: "user", id : crypto.randomUUID()}
-            )
-            console.log(chatMessages);
+            //I need to modify a copy of the chatMessages will use spread operator to make a copy 
+            //then add a new message object after the copy
+           setChatMessages(
+            [...chatMessages, {message: "This is a new message", sender: "user", id : crypto.randomUUID()}]
+           )
           } 
 
         {/*Now this component will return the mapped chat messages */}
