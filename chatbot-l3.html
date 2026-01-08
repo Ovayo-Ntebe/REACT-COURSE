@@ -50,7 +50,7 @@
           {message: "Hello! How can I help you?", sender: "robot", id : 'id2'}, 
           {message: "Can you get todays date", sender: "user", id : 'id3'},
           {message: "Today is 9 Dec", sender: "robot", id : 'id4'}
-          ]; */
+          ]; 
           //using state to make react aware of changes to the chatMessages array and update the html when changes occur
          const array = React.useState(
           [
@@ -59,11 +59,24 @@
           {message: "Can you get todays date", sender: "user", id : 'id3'},
           {message: "Today is 9 Dec", sender: "robot", id : 'id4'}
           ]
-         )
+         ) */
 
-         //State array has 2 elements the first is the state variable the second is a function to update the state variable
+        /* //State array has 2 elements the first is the state variable the second is a function to update the state variable
          const chatMessages = array[0]; //current value of the state variable
           const setChatMessages = array[1]; //function to update the state variable --called an Updater function
+            
+          A shorter way to write the above 2 lines is below using array destructuring 
+          const [chatMessages, setChatMessages] = array;
+          but again a shorter way is to put the React.useState call directly in the destructuring assignment instaed of making a array var first
+          */
+           const [chatMessages, setChatMessages] = React.useState(
+          [
+          {message: "hello Chatbot", sender: "user", id : 'id1'},
+          {message: "Hello! How can I help you?", sender: "robot", id : 'id2'}, 
+          {message: "Can you get todays date", sender: "user", id : 'id3'},
+          {message: "Today is 9 Dec", sender: "robot", id : 'id4'}
+          ]
+         )
 
           /*function for event handler to test events */
           function sendMessage()
